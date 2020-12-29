@@ -1,0 +1,16 @@
+.appWrapper {
+    display: grid;
+    width: 100%;
+    grid-template-areas:
+            "header header"
+            "sidebar content";
+    grid-template-rows: 60px 1fr;
+    grid-template-columns: 2fr 10fr;
+    grid-gap: 5px;
+}
+
+.contentWrapper {
+    grid-area: content;
+    background-color: #ffefd5;
+    width: 100%;
+}

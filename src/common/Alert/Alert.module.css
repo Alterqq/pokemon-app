@@ -1,0 +1,13 @@
+.alert {
+    width: 80%;
+    margin: 1rem auto ;
+    border: 2px solid #F8F8FF;
+    background-color: #F5DEB3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 5px 0px 25px 0px rgba(50, 50, 50, 0.6);
+    color: #CD853F;
+}

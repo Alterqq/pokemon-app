@@ -1,0 +1,26 @@
+.sidebar {
+    grid-area: sidebar;
+    background-color: #ffefd5;
+    width: 100%;
+    padding: 1rem;
+}
+.title {
+    font-size: 18px;
+    margin-bottom: .5rem;
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+}
+
+.pokemonName {
+    text-decoration: none;
+    color: black;
+    margin-bottom: .5rem;
+}
+
+.pokemonName:hover {
+    text-decoration: underline;
+}
+

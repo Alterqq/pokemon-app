@@ -1,0 +1,23 @@
+.title {
+    margin: 1rem 0 0 1rem;
+    font-size: 22px;
+}
+
+.list {
+    padding: 2rem;
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: auto;
+}
+
+.list span {
+    margin: 0 auto;
+}
+
+.card {
+    display: block;
+    margin: 0 auto;
+    text-decoration: none;
+    color: black;
+}

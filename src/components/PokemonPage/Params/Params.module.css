@@ -1,0 +1,17 @@
+.params {
+    display: flex;
+    flex-direction: column;
+}
+.param {
+    margin: .25rem 0;
+    display: flex;
+}
+
+.param span {
+    margin-left: .25rem;
+}
+
+.stats {
+    display: flex;
+    flex-direction: column;
+}

@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useEffect, useState} from 'react'
+import styles from "./App.module.css"
+import Header from "./components/Header/Header";
+import Sidebar from "./components/Sidebar/Sidebar";
+import PokemonList from "./components/PokemonList/PokemonList";
+import {Redirect, Route, Switch} from "react-router-dom";
+import PokemonPage from "./components/PokemonPage/PokemonPage";
+import {connect} from "react-redux";
+import {getPokemons} from "./redux/pokemonReducer";
+import PageNotFound from "./common/PageNotFound/PageNotFound";
 
-function App() {
+const App = ({getPokemons}) => {
+
+  useEffect(() => {
+    getPokemons()
+  }, [getPokemons])
+
+  const getName = (name) => {
+    return name[0].toUpperCase()+name.slice(1)
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+      <div className={styles.appWrapper}>
+        <Header />
+        <Sidebar getName={getName}/>
+        <main className={styles.contentWrapper}>
+          <Switch>
+            <Route exact path="/" render={() => <Redirect to="/list"/>}/>
+            <Route path="/list" render={() => <PokemonList getName={getName}/>}/>
+            <Route path="/pokemon/:pokeId" render={() => <PokemonPage getName={getName}/>}/>
+            <Route path="*" render={() => <PageNotFound/>}/>
+          </Switch>
+        </main>
+      </div>
+  )
 }
 
-export default App;
+export default connect(null, {getPokemons})(App)

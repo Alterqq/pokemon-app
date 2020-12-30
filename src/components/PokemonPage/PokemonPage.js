@@ -7,6 +7,7 @@ import Loader from "../../common/Loader/Loader";
 import Params from "./Params/Params";
 import {compose} from "redux";
 import {withRouter} from "react-router-dom";
+import ScrollToTop from "../../common/ScrollToTop/ScrollToTop";
 
 const PokemonPage = ({profile, setPokemonProfile, getName, isFetching, ...props}) => {
 
@@ -25,6 +26,7 @@ const PokemonPage = ({profile, setPokemonProfile, getName, isFetching, ...props}
         {isFetching
             ? <Loader/>
             : <div>
+              <ScrollToTop/>
               <h1 className={styles.title}>{getName(profile.name)}</h1>
               <div className={styles.info}>
                 <img className={styles.pokemonImage}

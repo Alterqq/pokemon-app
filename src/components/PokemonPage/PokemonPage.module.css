@@ -10,5 +10,14 @@
 }
 
 .pokemonImage{
-    width: 40%;
+    max-width: 30%;
+}
+
+@media (max-width: 1024px) {
+    .info {
+        flex-direction: column;
+    }
+    .pokemonImage {
+        max-width: 100%;
+    }
 }

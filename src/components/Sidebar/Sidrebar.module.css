@@ -4,9 +4,9 @@
     width: 100%;
     padding: 1rem;
 }
+
 .title {
     font-size: 18px;
-    margin-bottom: .5rem;
 }
 
 .list {
@@ -18,9 +18,22 @@
     text-decoration: none;
     color: black;
     margin-bottom: .5rem;
+    display: flex;
+    align-items: center;
+    height: 60px;
 }
 
 .pokemonName:hover {
     text-decoration: underline;
+}
+
+.avatar {
+    width: 60px;
+}
+
+@media (max-width: 426px) {
+    .sidebar {
+        display: none;
+    }
 }
 

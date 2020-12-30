@@ -1,6 +1,7 @@
 .params {
     display: flex;
     flex-direction: column;
+    width: 50%;
 }
 .param {
     margin: .25rem 0;
@@ -14,4 +15,10 @@
 .stats {
     display: flex;
     flex-direction: column;
+}
+
+@media (max-width: 1024px) {
+    .params {
+        width: 100%;
+    }
 }

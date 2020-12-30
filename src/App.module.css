@@ -4,8 +4,8 @@
     grid-template-areas:
             "header header"
             "sidebar content";
-    grid-template-rows: 60px 1fr;
-    grid-template-columns: 2fr 10fr;
+    grid-template-rows: 70px 1fr;
+    grid-template-columns: 1fr 5fr;
     grid-gap: 5px;
 }
 
@@ -13,4 +13,14 @@
     grid-area: content;
     background-color: #ffefd5;
     width: 100%;
+}
+
+@media (max-width: 426px) {
+    .appWrapper {
+        grid-template-rows: 70px;
+        grid-template-columns: 1fr;
+        grid-template-areas:
+                "header"
+                "content";
+    }
 }

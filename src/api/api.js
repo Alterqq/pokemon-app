@@ -1,8 +1,8 @@
 import * as axios from "axios";
 
 export const pokemonAPI = {
-  getPokemonsUrl() {
-    return axios.get(`https://pokeapi.co/api/v2/pokemon`).then(response => response.data.results.map(pokemon => pokemon.url))
+  getPokemonsUrl(offset = 0) {
+    return axios.get(`https://pokeapi.co/api/v2/pokemon/?offset=${offset}&limit=20`).then(response => response.data.results.map(pokemon => pokemon.url))
   },
 
   getPokemon(url) {
@@ -11,6 +11,6 @@ export const pokemonAPI = {
 
   setPokemonProfile(id) {
     return axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`)
-  }
+  },
 }
 

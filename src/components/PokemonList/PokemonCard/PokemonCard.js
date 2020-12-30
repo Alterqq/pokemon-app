@@ -7,7 +7,7 @@ const PokemonCard = ({pokemon, getName}) => {
       <div className={styles.cardWrapper}>
         <div className={styles.card}>
           <img src={pokemon.sprites.other['official-artwork'].front_default || unknownPokemon} alt="" className={styles.pokemonImage}/>
-          <div>{getName(pokemon.name)}</div>
+          <div>{getName(pokemon.name)} #{pokemon.id}</div>
         </div>
       </div>
   )

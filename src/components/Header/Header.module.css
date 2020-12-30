@@ -11,13 +11,16 @@
 .logo {
     width: 50px;
     height: 50px;
-    margin-left: 5%;
+}
+
+.link {
+    margin-left: 10%;
 }
 
 .homeBtn {
     text-decoration: none;
     color: #000;
-    margin-right: 5%;
+    margin-right: 10%;
 }
 
 .header a:hover {

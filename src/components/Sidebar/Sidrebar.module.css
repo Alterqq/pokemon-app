@@ -1,7 +1,6 @@
 .sidebar {
     grid-area: sidebar;
     background-color: #ffefd5;
-    width: 100%;
     padding: 1rem;
 }
 
@@ -17,7 +16,6 @@
 .pokemonName {
     text-decoration: none;
     color: black;
-    margin-bottom: .5rem;
     display: flex;
     align-items: center;
     height: 60px;

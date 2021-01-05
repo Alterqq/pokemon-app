@@ -1,7 +1,7 @@
 .params {
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 60%;
 }
 .param {
     margin: .25rem 0;

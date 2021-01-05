@@ -15,9 +15,8 @@ import {initializeApp} from "./redux/appReducer";
 const App = ({initialized, initializeApp}) => {
 
   const getName = (name) => {
-    return name[0].toUpperCase() + name.slice(1)
+    return name[0].toUpperCase()+name.slice(1).replace(/-/g, ' ');
   }
-
   useEffect(() => {
     initializeApp()
   }, [initializeApp])
@@ -47,8 +46,6 @@ const mapStateToProps = (state) => {
     initialized: state.app.initialized
   }
 }
-
-
 export default compose(
     connect(mapStateToProps, {getPokemons, initializeApp}),
     withRouter

@@ -7,14 +7,14 @@ import Alert from "../../common/Alert/Alert";
 import {getPokemons} from "../../redux/pokemonReducer";
 import SidebarMenu from "../SidearMenu/SidebarMenu";
 
-const PokemonList = ({pokemons, isLoading, getPokemons, isFetching, ...props}) => {
+const PokemonList = ({pokemons, isLoading, getPokemons, isFetching, hasNextUrl, ...props}) => {
 
   const [offset, setOffset] = useState(0)
   const [activeMenu, setActiveMenu] = useState(false)
-  const firstUpdate = useRef(true);
+  const firstRender = useRef(true);
   useEffect(() => {
-    if (firstUpdate.current) {
-      firstUpdate.current = false;
+    if (firstRender.current) {
+      firstRender.current = false;
     } else {
       getPokemons(offset)
     }
@@ -28,17 +28,17 @@ const PokemonList = ({pokemons, isLoading, getPokemons, isFetching, ...props}) =
               {activeMenu
                   ? <SidebarMenu pokemons={pokemons} getName={props.getName} setActiveMenu={setActiveMenu}/>
                   : <div>
-                    <div className={styles.titleWrapper}><h1 className={styles.title}>Pokemons List</h1>
+                    <div className={styles.titleWrapper}>
+                      <h1 className={styles.title}>Pokemons List</h1>
                       <div onClick={() => setActiveMenu(true)} className={styles.burgerBtn}><span/></div>
                     </div>
                     <div className={styles.list}>
                       {pokemons.map(pokemon => {
-                        return <NavLink key={pokemon.id} className={styles.card}
-                                        to={`/pokemon/${pokemon.id}`}><PokemonCard
-                            pokemon={pokemon} key={pokemon.id} getName={props.getName}/></NavLink>
+                        return <NavLink key={pokemon.id} className={styles.card} to={`/pokemon/${pokemon.id}`}>
+                          <PokemonCard pokemon={pokemon} key={pokemon.id} getName={props.getName}/></NavLink>
                       })}
                     </div>
-                    <button disabled={isFetching}
+                    <button disabled={isFetching || !hasNextUrl}
                             className={styles.showMoreBtn}
                             onClick={() => setOffset(prev => prev + 20)}>Show more</button>
                   </div>}
@@ -52,7 +52,8 @@ const mapStateToProps = (state) => {
   return {
     pokemons: state.poke.pokemons,
     isLoading: state.poke.isLoading,
-    isFetching: state.poke.isFetching
+    isFetching: state.poke.isFetching,
+    hasNextUrl: state.poke.hasNextUrl,
   }
 }
 

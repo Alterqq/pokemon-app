@@ -52,10 +52,6 @@
     grid-template-rows: auto;
 }
 
-.list span {
-    margin: 0 auto;
-}
-
 .card {
     display: block;
     margin: 0 auto;

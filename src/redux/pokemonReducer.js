@@ -4,12 +4,14 @@ const SET_POKEMONS = 'pokemon/SET_POKEMONS'
 const SET_POKEMON_PROFILE = 'pokemon/SET_POKEMON_PROFILE'
 const TOGGLE_IS_FETCHING = 'pokemon/TOGGLE_IS_FETCHING'
 const SET_IS_LOADING = 'pokemon/IS_LOADING'
+const SET_BUTTON_DISABLED = 'pokemon/SET_BUTTON_DISABLED'
 
 const initialState = {
   pokemons: [],
   profile: null,
   isFetching: false,
-  isLoading: true
+  isLoading: true,
+  hasNextUrl: true
 }
 
 const pokemonReducer = (state = initialState, action) => {
@@ -21,7 +23,9 @@ const pokemonReducer = (state = initialState, action) => {
     case TOGGLE_IS_FETCHING:
       return {...state, isFetching: action.payload}
     case SET_IS_LOADING:
-      return {...state, isLoading: action.payload}
+      return {...state, isLoading: false}
+    case SET_BUTTON_DISABLED:
+      return {...state, hasNextUrl: false}
     default:
       return state
   }
@@ -30,20 +34,25 @@ const pokemonReducer = (state = initialState, action) => {
 const setPokemons = (pokemons) => ({type: SET_POKEMONS, payload: pokemons})
 const setPokemonProfileSuccess = (profile) => ({type: SET_POKEMON_PROFILE, payload: profile})
 const toggleIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, payload: isFetching})
-const setIsLoading = (loading) => ({type: SET_IS_LOADING, payload: loading})
+const setIsLoading = () => ({type: SET_IS_LOADING})
+const setButtonDisabled = () => ({type: SET_BUTTON_DISABLED})
+
 
 export const getPokemons = (offset) => async (dispatch) => {
   try {
-    const urls = await pokemonAPI.getPokemonsUrl(offset)
+    const pokemons = await pokemonAPI.getPokemonsUrl(offset)
+    const urls = pokemons.data.results.map(pokemon => pokemon.url)
     const promises = await urls.map(url => pokemonAPI.getPokemon(url).then(response => response.data))
     dispatch(toggleIsFetching(true))
     await Promise.all(promises).then(response => dispatch(setPokemons(response)))
     dispatch(toggleIsFetching(false))
+    if (pokemons.data.next === null) dispatch(setButtonDisabled())
   } catch (error) {
-    dispatch(setIsLoading(false))
+    dispatch(setIsLoading())
   }
-
 }
+
+
 export const setPokemonProfile = (id) => async (dispatch) => {
   dispatch(toggleIsFetching(true))
   const response = await pokemonAPI.setPokemonProfile(id)
